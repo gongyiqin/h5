@@ -1,6 +1,6 @@
 <template lang="pug">
   .page.page-home.cover-box
-    .logo: img(src='/static/images/5.jpeg')
+    .logo: img(src='/static/images/1.jpg')
     div.res_list
       div.row.align_center.positon.box(v-for="(item,index) in restaurants" @click="go_restaurant(item,index)")
         div.img
@@ -14,15 +14,6 @@
     Langs
 </template>
 
-<i18n>
-  目前仅支持通过商家二维码进入点餐，谢谢。:
-  en: Only support for ordering through the merchant QR code, thank you.
-  th: ในปัจจุบันการสนับสนุนเฉพาะสำหรับการสั่งซื้อผ่านรหัส QR ของที่ร้าน ขอบคุณค่ะ
-  ru: В настоящее время, только поддержка заказа через QR-код продавца, спасибо.
-  kr: 현재 가게 QR 코드로만 주문 가능합니다. 감사합니다.
-  jp: 現在ただ店舗ＱＲコードを通して料理を注文するだけです、ありがとうございます。
-
-</i18n>
 
 <script>
   import { mapState } from 'vuex'
@@ -50,6 +41,11 @@
     },
     computed: {
       ...mapState(['lang']),
+      startPath() {
+        if (this.restaurants[0].name) {
+          return `/restaurants/9b35bad9-d1e7-11e8-a759-02923678cfa4/tables/68`
+        }
+      }
     },
     methods: {
       go_restaurant(item) {
@@ -72,7 +68,6 @@
     width: 100%;
     height: auto;
   /*border: 1px solid red;*/
-
   }
   .box{
     padding: 4px;
